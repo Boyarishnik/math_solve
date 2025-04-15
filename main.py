@@ -5,6 +5,13 @@ import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
+def get_num(num: float):
+    num = round(num, 2)
+    if num.is_integer():
+        return int(num)
+    return num
+
+
 class LinearFunction:
     """Класс для представления линейной функции"""
     def __init__(self, a, b):
@@ -110,7 +117,7 @@ class ParabolaPlotter:
         # Построение графика
         self.ax.plot(x, y, label='Парабола', color='blue')
         self.ax.plot(x, y1, label="Прямая", color="red")
-        self.ax.plot(x, y2, label=f"Касательная (y = {func2.a:.2}x {' - ' if func2.b < 0 else ' + '} {abs(func2.b):.2})", color="green")
+        self.ax.plot(x, y2, label=f"Касательная (y = {get_num(func2.a)}x {' - ' if func2.b < 0 else ' + '} {abs(get_num(func2.b))})", color="green")
         self.ax.axhline(0, color='black', linewidth=0.5, ls='--')
         self.ax.axvline(0, color='black', linewidth=0.5, ls='--')
         self.ax.set_title('График')
